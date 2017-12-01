@@ -74,9 +74,13 @@ open class PermissionAlert {
         self.permission = permission
     }
     
-    internal func present() {
+    internal func present(fromViewController vc: UIViewController? = nil) {
         DispatchQueue.main.async {
-            UIApplication.shared.presentViewController(self.controller)
+            if vc != nil {
+                vc!.present(self.controller, animated: true, completion: nil)
+            } else {
+                UIApplication.shared.presentViewController(self.controller)
+            }
         }
     }
 

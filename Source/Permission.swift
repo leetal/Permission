@@ -267,7 +267,7 @@ open class Permission: NSObject {
      
      - parameter callback: The function to be triggered after the user responded to the request.
      */
-    open func request(_ callback: @escaping Callback) {
+    open func request(fromViewController vc: UIViewController? = nil, _ callback: @escaping Callback) {
         self.callback = callback
         
         DispatchQueue.main.async {
@@ -278,9 +278,9 @@ open class Permission: NSObject {
         
         switch status {
         case .authorized:    callbacks(status)
-        case .notDetermined: presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbacks)
-        case .denied:        presentDeniedAlert ? deniedAlert.present() : callbacks(status)
-        case .disabled:      presentDisabledAlert ? disabledAlert.present() : callbacks(status)
+        case .notDetermined: presentPrePermissionAlert ? prePermissionAlert.present(fromViewController: vc) : requestAuthorization(callbacks)
+        case .denied:        presentDeniedAlert ? deniedAlert.present(fromViewController: vc) : callbacks(status)
+        case .disabled:      presentDisabledAlert ? disabledAlert.present(fromViewController: vc) : callbacks(status)
         }
     }
     
