@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "leetal-Permission"
   s.module_name  = "Permission"
-  s.version      = "2.1.1"
+  s.version      = "2.1.2"
   s.license      = { :type => "MIT" }
   s.homepage     = "https://github.com/leetal/Permission"
   s.author       = { "Damien" => "damien@delba.io", "Alexander Widerberg" => "widerbergaren@gmail.com" }

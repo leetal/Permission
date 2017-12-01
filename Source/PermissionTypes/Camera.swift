@@ -27,8 +27,11 @@ import AVFoundation
 
 internal extension Permission {
     var statusCamera: PermissionStatus {
-        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-        
+        #if swift(>=4.0)
+            let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        #else
+            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        #endif
         switch status {
         case .authorized:          return .authorized
         case .restricted, .denied: return .denied
@@ -41,10 +44,16 @@ internal extension Permission {
             print("WARNING: \(String.cameraUsageDescription) not found in Info.plist")
             return
         }
-        
-        AVCaptureDevice.requestAccess(for: AVMediaType.video) { _ in
-            callback(self.statusCamera)
-        }
+
+        #if swift(>=4.0)
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { _ in
+                callback(self.statusCamera)
+            }
+        #else
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { _ in
+                callback(self.statusCamera)
+            }
+        #endif
     }
 }
 #endif
