@@ -50,6 +50,8 @@ internal extension Permission {
                     if settings.authorizationStatus == .provisional {
                         status = .authorized
                     }
+                } else {
+                    status = .notDetermined
                 }
             }
             semaphore.signal()
