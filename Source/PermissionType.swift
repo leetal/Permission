@@ -151,6 +151,6 @@ extension PermissionType: CustomStringConvertible {
         if case .mediaLibrary = self { return "Media Library" }
         #endif
         
-        fatalError()
+        return "Unknown"
     }
 }

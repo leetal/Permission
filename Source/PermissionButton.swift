@@ -27,11 +27,8 @@ open class PermissionButton: UIButton {
     /// The permission of the button.
     public let permission: Permission
     
-    /// The permission domain of the button.
-    open var domain: PermissionType { return permission.type }
-    
     /// The permission status of the button.
-    open var status: PermissionStatus { return permission.status }
+    public var status: PermissionStatus { return permission.status }
     
     fileprivate var titles: [UIControl.State: [PermissionStatus: String]] = [:]
     fileprivate var attributedTitles: [UIControl.State: [PermissionStatus: NSAttributedString]] = [:]

@@ -155,69 +155,69 @@ open class Permission: NSObject {
     #endif
     
     /// The permission domain.
-    public let type: PermissionType
+    public let type: PermissionType!
     
     /// The permission status.
     open var status: PermissionStatus {
         #if PERMISSION_CONTACTS
-        if case .contacts = type { return statusContacts }
+        if case .contacts = type! { return statusContacts }
         #endif
         
         #if PERMISSION_ADDRESS_BOOK
-        if case .addressBook = type { return statusAddressBook }
+        if case .addressBook = type! { return statusAddressBook }
         #endif
         
         #if PERMISSION_LOCATION
-        if case .locationAlways    = type { return statusLocationAlways }
-        if case .locationWhenInUse = type { return statusLocationWhenInUse }
+        if case .locationAlways    = type! { return statusLocationAlways }
+        if case .locationWhenInUse = type! { return statusLocationWhenInUse }
         #endif
         
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = type { return statusNotifications }
+        if case .notifications = type! { return statusNotifications }
         #endif
         
         #if PERMISSION_USER_NOTIFICATIONS
-        if case .userNotifications = type { return statusUserNotifications }
+        if case .userNotifications = type! { return statusUserNotifications }
         #endif
         
         #if PERMISSION_MICROPHONE
-        if case .microphone = type { return statusMicrophone }
+        if case .microphone = type! { return statusMicrophone }
         #endif
         
         #if PERMISSION_CAMERA
-        if case .camera = type { return statusCamera }
+        if case .camera = type! { return statusCamera }
         #endif
         
         #if PERMISSION_PHOTOS
-        if case .photos = type { return statusPhotos }
+        if case .photos = type! { return statusPhotos }
         #endif
         
         #if PERMISSION_REMINDERS
-        if case .reminders = type { return statusReminders }
+        if case .reminders = type! { return statusReminders }
         #endif
         
         #if PERMISSION_EVENTS
-        if case .events = type { return statusEvents }
+        if case .events = type! { return statusEvents }
         #endif
         
         #if PERMISSION_BLUETOOTH
-        if case .bluetooth = type { return statusBluetooth }
+        if case .bluetooth = type! { return statusBluetooth }
         #endif
         
         #if PERMISSION_MOTION
-        if case .motion = type { return statusMotion }
+        if case .motion = type! { return statusMotion }
         #endif
         
         #if PERMISSION_SPEECH_RECOGNIZER
-        if case .speechRecognizer = type { return statusSpeechRecognizer }
+        if case .speechRecognizer = type! { return statusSpeechRecognizer }
         #endif
         
         #if PERMISSION_MEDIA_LIBRARY
-        if case .mediaLibrary = type { return statusMediaLibrary }
+        if case .mediaLibrary = type! { return statusMediaLibrary }
         #endif
         
         #if PERMISSION_SIRI
-        if case .siri = type { return statusSiri }
+        if case .siri = type! { return statusSiri }
         #endif
         
         fatalError()
@@ -260,6 +260,7 @@ open class Permission: NSObject {
      */
     fileprivate init(type: PermissionType) {
         self.type = type
+        super.init()
     }
     
     /**
@@ -286,110 +287,110 @@ open class Permission: NSObject {
     
     internal func requestAuthorization(_ callback: @escaping Callback) {
         #if PERMISSION_CONTACTS
-        if case .contacts = type {
+        if case .contacts = type! {
             requestContacts(callback)
             return
         }
         #endif
         
         #if PERMISSION_ADDRESS_BOOK
-        if case .addressBook = type {
+        if case .addressBook = type! {
             requestAddressBook(callback)
             return
         }
         #endif
         
         #if PERMISSION_LOCATION
-        if case .locationAlways = type {
+        if case .locationAlways = type! {
             requestLocationAlways(callback)
             return
         }
         
-        if case .locationWhenInUse = type {
+        if case .locationWhenInUse = type! {
             requestLocationWhenInUse(callback)
             return
         }
         #endif
         
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = type {
+        if case .notifications = type! {
             requestNotifications(callback)
             return
         }
         #endif
         
         #if PERMISSION_USER_NOTIFICATIONS
-        if case .userNotifications = type {
+        if case .userNotifications = type! {
             requestUserNotifications(callback)
             return
         }
         #endif
         
         #if PERMISSION_MICROPHONE
-        if case .microphone = type {
+        if case .microphone = type! {
             requestMicrophone(callback)
             return
         }
         #endif
         
         #if PERMISSION_CAMERA
-        if case .camera = type {
+        if case .camera = type! {
             requestCamera(callback)
             return
         }
         #endif
         
         #if PERMISSION_PHOTOS
-        if case .photos = type {
+        if case .photos = type! {
             requestPhotos(callback)
             return
         }
         #endif
         
         #if PERMISSION_REMINDERS
-        if case .reminders = type {
+        if case .reminders = type! {
             requestReminders(callback)
             return
         }
         #endif
         
         #if PERMISSION_EVENTS
-        if case .events = type {
+        if case .events = type! {
             requestEvents(callback)
             return
         }
         #endif
         
         #if PERMISSION_BLUETOOTH
-        if case .bluetooth = type {
+        if case .bluetooth = type! {
             requestBluetooth(self.callback)
             return
         }
         #endif
         
         #if PERMISSION_MOTION
-        if case .motion = type {
+        if case .motion = type! {
             requestMotion(self.callback)
             return
         }
         #endif
         
         #if PERMISSION_SPEECH_RECOGNIZER
-        if case .speechRecognizer = type {
+        if case .speechRecognizer = type! {
             requestSpeechRecognizer(callback)
             return
         }
         #endif
         
         #if PERMISSION_MEDIA_LIBRARY
-        if case .mediaLibrary = type {
+        if case .mediaLibrary = type! {
             requestMediaLibrary(callback)
             return
         }
         #endif
         
         #if PERMISSION_SIRI
-        if case .siri = type {
+        if case .siri = type! {
             requestSiri(callback)
             return
         }
@@ -414,6 +415,6 @@ extension Permission {
     
     /// A textual representation of this instance, suitable for debugging.
     override open var debugDescription: String {
-        return "\(type): \(status)"
+        return "\(type!): \(status)"
     }
 }
