@@ -45,6 +45,14 @@ internal extension Permission {
                 status = .denied
             case .notDetermined:
                 status = .notDetermined
+            default:
+                if #available(iOS 12.0, *) {
+                    if settings.authorizationStatus == .provisional {
+                        status = .authorized
+                    }
+                } else {
+                    status = .notDetermined
+                }
             }
             semaphore.signal()
         }
