@@ -260,6 +260,11 @@ open class Permission: NSObject {
      */
     fileprivate init(type: PermissionType) {
         self.type = type
+        super.init()
+    }
+    
+    fileprivate convenience override init() {
+        self.init(type: .undetermined)
     }
     
     /**
