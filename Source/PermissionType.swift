@@ -26,6 +26,8 @@ import UserNotifications
 #endif
 
 public enum PermissionType {
+    case undetermined
+    
     #if PERMISSION_CONTACTS
     @available(iOS 9.0, *) case contacts
     #endif

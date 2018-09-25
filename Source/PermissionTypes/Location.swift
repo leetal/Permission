@@ -52,12 +52,12 @@ extension CLLocationManager {
         
         requestedLocation = true
         
-        if case .locationAlways = permission.type! {
+        if case .locationAlways = permission.type {
             requestAlwaysAuthorization()
             return
         }
         
-        if case .locationWhenInUse = permission.type! {
+        if case .locationWhenInUse = permission.type {
             requestWhenInUseAuthorization()
             return
         }
